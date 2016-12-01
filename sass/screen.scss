@@ -1,0 +1,92 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+//colors
+$col1:#E6E2AF; //sandy
+$col2:#A7A37E; // dark sandy
+$col3:#EFECCA; // bright sandy
+$col4:#046380; // blue
+$col5:#002F2F; // dark ocean
+$success:#D2EFCF;
+
+//margins
+$m15:15px;
+$m10:10px;
+
+
+
+body
+{
+ width:100%;
+ margin:0 auto;
+ padding:0px;
+ font-family:helvetica;
+ background-color:$col4;
+ color:$col2;
+}
+#wrapper
+{
+ text-align:center;
+ margin:0 auto;
+ padding:0px;
+ width:995px;
+}
+form
+{
+margin-top:$m15;
+}
+#drop-btn
+{
+background-color:$col1;
+border:none;
+padding:$m10;
+width:100px;
+color:$col5;
+font-weight:bold;
+  &:hover
+  {
+    background-color:$col3;
+  }
+}
+#drop-area
+{
+ margin-top:$m15;
+ margin-left:220px;
+ width:550px;
+ height:200px;
+ background-color:white;
+ border:3px dashed grey;
+ vertical-align: middle;
+}
+.success
+{
+  text-align: center;
+  vertical-align: middle;
+  margin-top:$m15;
+  padding:$m10;
+  color:$col4;
+  background-color:$success;
+  font-weight:bold;
+}
+.error
+{
+  vertical-align: middle;
+  margin-top:$m15;
+  color: red;
+  font-weight:bold;
+}
+.drop-text
+{
+ margin-top:70px;
+ color:grey;
+ font-size:25px;
+ font-weight:bold;
+}
+#drop-area img
+{
+ max-width:200px;
+}

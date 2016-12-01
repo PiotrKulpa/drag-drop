@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <title>JS Drag & Drop</title>
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+<form  action="upload_image.php" method="post" enctype="multipart/form-data">
+ <input id="select-btn" type="file" name="userImage[]" multiple>
+ <input id="drop-btn" type="submit">
+</form>
+ <div id="drop-area">
+  <h3 class="drop-text">...lub Przeciągnij i Upuść Pliki Tutaj</h3>
+  <img class="loader" src="loader/loading.gif">
+ </div>
+</div>
+
+<script>
+$(document).ready(function()
+{
+  $('.loader').css('display', 'none');
+ $("#drop-area").on('dragenter', function (e){
+  e.preventDefault();
+  $(this).css('background', '#EFECCA');
+ });
+
+ $("#drop-area").on('dragover', function (e){
+  e.preventDefault();
+ });
+
+ $("#drop-area").on('drop', function (e){
+  $(this).css('background', '#EFECCA');
+  $('.loader').fadeIn();
+  e.preventDefault();
+  var image = e.originalEvent.dataTransfer.files;
+  var fL = e.originalEvent.dataTransfer.files.length;
+  createFormData(image, fL);
+ });
+});
+
+function createFormData(image, fL)
+{
+ var formImage = new FormData();
+ console.log(formImage);
+
+ for(var i = 0; i < fL; i++){
+ formImage.append('userImage' + i, image[i]);
+ }
+
+
+ uploadFormData(formImage);
+}
+
+function uploadFormData(formData)
+{
+ $.ajax({
+ url: "upload_image_ajax.php",
+ type: "POST",
+ data: formData,
+ contentType:false,
+ cache: false,
+ processData: false,
+ success: function(data){
+  $('#drop-area').html(data);
+ }});
+}
+</script>
+
+</body>
+</html>
